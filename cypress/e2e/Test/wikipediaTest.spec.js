@@ -28,8 +28,9 @@ describe('Solution excercise 2', () => {
     
         //If year was found, takes a screen shot
         if(year) {
-            cy.screenshot(`Year_of_coincidence_${year}`);
+            cy.screenshot();
         }
     })
+
 });
     
