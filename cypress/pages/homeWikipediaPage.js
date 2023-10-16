@@ -11,14 +11,13 @@ class homeWikipediaPage {
             if (match) {
                 foundYear = match[1];
                 cy.log(`The year of coincidence is: ${foundYear}`);
-                // Guardar el año en values.json
-                cy.writeFile('cypress/fixtures/values.json', { "searchValue": foundYear });
             } else {
                 cy.log('Results not found.');
             }
         });
         return foundYear;
     }
+    
 }
     
 module.exports = new homeWikipediaPage();

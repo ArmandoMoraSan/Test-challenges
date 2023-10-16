@@ -1,15 +1,16 @@
 const cucumber = require('cypress-cucumber-preprocessor').default;
 
 module.exports = {
+  screenshotsFolder: 'cypress/my_screenshots',
   e2e: {
     baseUrl: "https://www.google.com",
-    specPattern: "**/*.feature"
+    specPattern: "**/*spec.js"
   },
-  cucumberPreprocessor: {
-    nonGlobalStepDefinitions: true
-  }
-};
+//   cucumberPreprocessor: {
+//     nonGlobalStepDefinitions: true
+//   }
+// };
 
-cypressCucumberPreprocessor: {
-  stepDefinitions: "cypress/e2e"
+// cypressCucumberPreprocessor: {
+//   stepDefinitions: "cypress/e2e"
 }
