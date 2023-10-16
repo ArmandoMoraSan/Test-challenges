@@ -1,3 +1,5 @@
+const cucumber = require('cypress-cucumber-preprocessor').default;
+
 module.exports = {
   e2e: {
     baseUrl: "https://www.google.com",
@@ -7,3 +9,7 @@ module.exports = {
     nonGlobalStepDefinitions: true
   }
 };
+
+cypressCucumberPreprocessor: {
+  stepDefinitions: "cypress/e2e"
+}
