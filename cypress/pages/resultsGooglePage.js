@@ -1,38 +1,4 @@
 class ResultsGooglePage {
-    // constructor() {
-    //     this.urls = [];
-    // }
-
-    // // Method to store in an array all the links
-    // storeSearchResults() {
-    //     return new Cypress.Promise((resolve, reject) => {
-    //         const urls = [];
-    //         cy.get('h3').each(($el, index, $list) => {
-    //             cy.wrap($el).parents('a').first().invoke('attr', 'href').then(href => {
-    //                 urls.push(href);
-    //                 cy.log(`URL ${index + 1}: ${href}`); 
-    //                 if (index === $list.length - 1) {
-    //                     this.urls = urls;
-    //                     cy.log('URLs list:', this.urls); 
-    //                     resolve();
-    //                 }
-    //             }, error => {
-    //                 // In case of error, method continues with the followin element
-    //                 cy.log(`href not found for the element ${index}: ${error.message}`);
-    //             });
-    //         });
-    //     });
-    // }
-    
-    // // Method to navigate to the link that contains the parameter "urlPart"
-    // visitPageByUrlPart(urlPart) {
-    //     const urlToVisit = this.urls.find(url => url && url.includes(urlPart));
-    //     if (urlToVisit) {
-    //         cy.visit(urlToVisit);
-    //     } else {
-    //         throw new Error(`There's no URL matching with: ${urlPart}`);
-    //     }
-    // }
 
     //Method to navigate to the link that contains the parameter "urlPart"
     visitUrl(urlPart) {
@@ -45,10 +11,22 @@ class ResultsGooglePage {
                 data.wikipediaUrl = hrefValue;
                 cy.writeFile('cypress/fixtures/values.json', data);
             });
-            cy.get('h3').contains(urlPart).parent('a').click();
+
+            
+        });
+        cy.fixture('values.json').then((data) => {
+            let wikipediaUrl = data.wikipediaUrl; //Asign current wikipediaUrl value from values.json
+            cy.visit(wikipediaUrl);
         });
     }
 
+    verifyLink() {
+        cy.fixture('values.json').then((data) => {
+            let wikipediaUrl = data.wikipediaUrl;
+            
+            expect(wikipediaUrl.includes('wikipedia')).to.be.true;
+        });
+    }     
 }
 module.exports = new ResultsGooglePage();
 

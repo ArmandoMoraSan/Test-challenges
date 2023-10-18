@@ -1,40 +1,19 @@
 class homeWikipediaPage {
 
-    // Método para buscar el año que está antes de la frase "primer proceso automa"
     findYearBeforePhrase() {
-        // Buscar en todos los párrafos el año que precede a la frase "primer proceso automa"
-        let foundYear;
         cy.get('p').contains(/(\d{4}).*?primer proceso/).then(($el) => {
-            // Extraer el año usando una expresión regular
             const regex = /(\d{4}).*?primer proceso/;
             const match = regex.exec($el.text());
-            if (match) {
-                foundYear = match[1];
+            
+            if (match && match[1] === '1771') {
+                const foundYear = match[1];
                 cy.log(`The year of coincidence is: ${foundYear}`);
+                expect(foundYear).to.eq('1771');
+                cy.screenshot();
             } else {
-                cy.log('Results not found.');
+                cy.log('Year not found or does not match the expected year!');
             }
         });
-        return foundYear;
     }
-
-    // findYearBeforePhrase() {
-    //     // Retorna el resultado de la operación asíncrona
-    //     return cy.get('p').contains(/(\d{4}).*?primer proceso/).then(($el) => {
-    //         const regex = /(\d{4}).*?primer proceso/;
-    //         const match = regex.exec($el.text());
-    //         if (match) {
-    //             const foundYear = match[1];
-    //             cy.log(`The year of coincidence is: ${foundYear}`);
-    //             return foundYear; // Retorna el año
-    //         } else {
-    //             cy.log('Results not found.');
-    //             return null; // Retorna null si no hay coincidencias
-    //         }
-    //     });
-    //}
-    
-    
 }
-    
 module.exports = new homeWikipediaPage();
