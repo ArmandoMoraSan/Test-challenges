@@ -7,11 +7,4 @@ module.exports = {
     specPattern: "**/*spec.js",
     projectId: "hwtsiu",
   },
-//   cucumberPreprocessor: {
-//     nonGlobalStepDefinitions: true
-//   }
-// };
-
-// cypressCucumberPreprocessor: {
-//   stepDefinitions: "cypress/e2e"
 }

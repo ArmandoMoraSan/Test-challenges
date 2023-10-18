@@ -22,7 +22,6 @@ class homeGooglePage {
             expect(title.toLowerCase()).to.eq((searchValue + appendedText).toLowerCase());
         });
     }
-    
 }
  
 module.exports = new homeGooglePage();
